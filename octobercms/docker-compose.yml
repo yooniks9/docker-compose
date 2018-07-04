@@ -1,0 +1,10 @@
+version: '3.3'
+services:
+  web:
+    image: aspendigital/octobercms:latest
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./html:/var/www/html
+      - ./config/custom.ini/usr/local/etc/php/conf.d/custom.ini
