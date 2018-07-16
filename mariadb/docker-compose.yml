@@ -11,3 +11,9 @@ services:
       - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: pa$$w0rd
+      
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
