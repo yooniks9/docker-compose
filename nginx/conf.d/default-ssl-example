@@ -33,7 +33,7 @@ server {
 		root /usr/share/nginx/html;
 	}
 	
-	include /etc/nginx/options-ssl-nginx.conf;
+	ssl_dhparam /etc/nginx/certs/dhparams.pem;
     ssl_certificate /etc/nginx/certs/example.com/fullchain.pem;
     ssl_certificate_key /etc/nginx/certs/example.com/privkey.pem;
 }
