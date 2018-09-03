@@ -1,0 +1,38 @@
+server {
+	listen 80;
+	listen [::]:80;
+
+	server_name example.com www.example.com;
+
+	root  /usr/share/nginx/html;
+	index index.php index.htm index.html;
+
+	charset utf-8;
+
+	access_log /var/log/nginx/example.com-access.log;
+	error_log /var/log/nginx/example.com-error.log;
+
+	location / {
+		proxy_set_header X-Real-IP  $remote_addr;
+		proxy_set_header X-Forwarded-For $remote_addr;
+		proxy_set_header Host $host;
+		proxy_pass http://172.16.2.23/;
+	}
+	
+	error_page 404 /404.html;
+	error_page 500 502 503 504 /50x.html;
+
+	location = /50x.php {
+		root /usr/share/nginx/html;
+	}
+
+	## Let's encrypt
+	location '/.well-known/acme-challenge' {
+		allow all;
+		default_type "text/plain";
+		root /usr/share/nginx/html;
+	}
+
+	## redirect https
+	#return 301 https://$host$request_uri;
+}
