@@ -5,6 +5,8 @@ services:
   webserver:
     image: nginx:latest
     restart: always
+    environment:
+      TZ: "Asia/Taipei"
     ports:
       - "80:80"
       - "443:443"
