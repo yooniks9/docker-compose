@@ -7,8 +7,6 @@ server {
 	root  /usr/share/nginx/html;
 	index index.php index.htm index.html;
 
-	charset utf-8;
-
 	access_log /var/log/nginx/example.com-access.log;
 	error_log /var/log/nginx/example.com-error.log;
 
@@ -16,7 +14,7 @@ server {
 		proxy_set_header X-Real-IP  $remote_addr;
 		proxy_set_header X-Forwarded-For $remote_addr;
 		proxy_set_header Host $host;
-		proxy_pass http://172.16.2.23/;
+		proxy_pass http://172.16.2.22/;
 	}
 	
 	error_page 404 /404.html;
@@ -30,7 +28,7 @@ server {
 	location '/.well-known/acme-challenge' {
 		allow all;
 		default_type "text/plain";
-		root /usr/share/nginx/html;
+		root /usr/share/nginx/webroot;
 	}
 
 	## redirect https
