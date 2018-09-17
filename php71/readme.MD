@@ -12,3 +12,8 @@ composer
 
 ## Production with SSL
 `docker-compose -f docker-compose-prod.yml up -d`
+
+## working directory
+`./webroot/public`
+
+⋅⋅* enable symbolic link within webroot folder
