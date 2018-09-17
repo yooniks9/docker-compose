@@ -85,7 +85,7 @@ define('WP_DEBUG', false);
 if ( !defined('ABSPATH') )
 	define('ABSPATH', dirname(__FILE__) . '/');
 
-/* Dynamic URL setting */
+/* Dynamic URL setting (match any url/domain) */
 $currenthost = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
 $currentpath = preg_replace('@/+$@','',dirname($_SERVER['SCRIPT_NAME']));
 $currentpath = preg_replace('/\/wp.+/','',$currentpath);

@@ -10,7 +10,7 @@ services:
       - "8002:443"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
-      - ./webroot:/var/www/html
+      - ./webroot:/var/www/webroot
       - ./config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
       - ./config/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
       - ./config/000-default.conf:/etc/apache2/sites-enabled/000-default.conf

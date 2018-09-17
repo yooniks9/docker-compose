@@ -8,6 +8,6 @@ services:
     ports:
       - "8001:80"
     volumes:
-      - ./webroot:/var/www/html
+      - ./webroot:/var/www/webroot
       - ./config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
       - ./config/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
