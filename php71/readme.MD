@@ -4,9 +4,6 @@ bcmath bz2 calendar curl iconv intl mbstring mcrypt mysqli opcache pdo_mysql pdo
 ## Apache mods
 rewrite ssl(production)
 
-## Etc
-composer
-
 ## Staging start
 `docker-compose up -d`
 
@@ -16,4 +13,17 @@ composer
 ## working directory
 `./webroot/public`
 
-⋅⋅* enable symbolic link within webroot folder
+## customize your php vars under ./config/custom.ini
+- max_input_vars = 1000000
+- memory_limit = 128M
+- upload_max_filesize = 32M
+- post_max_size = 32M
+- max_execution_time = 300
+- max_input_time = 300
+- short_open_tag = off
+- realpath_cache_size = 5242880
+
+## composer
+`docker exec $DOCKERNAME composer require $COMPOSERMOD`
+
+* enable symbolic link within webroot folder
