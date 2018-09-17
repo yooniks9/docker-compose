@@ -5,6 +5,8 @@ services:
   php71:
     image: yooniks/php:7.1-apache
     restart: always
+    environment:
+      TZ: "Asia/Taipei"
     ports:
       - "8001:80"
       - "8002:443"
