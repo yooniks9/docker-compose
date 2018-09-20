@@ -13,5 +13,5 @@
 ## generate ssl
 `certbot certonly -a webroot --webroot-path=/srv/nginx/webroot -d example.com`
 
-## sudo cronjob -e
+## sudo crontab -e
 `30 2 * * 1 /bin/certbot renew >> /var/log/letsencrypt/le-renew.log`
