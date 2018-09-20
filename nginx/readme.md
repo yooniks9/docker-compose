@@ -15,3 +15,10 @@
 
 ## sudo cronjob -e
 `30 2 * * 1 /bin/certbot renew >> /var/log/letsencrypt/le-renew.log`
+
+## Permission problem ??
+`
+sudo find ./webroot -type f -exec chmod 664 {} + \
+&& sudo find ./webroot -type d -exec chmod 775 {} + \
+&& sudo chown -R www-data:www-data ./webroot
+`
