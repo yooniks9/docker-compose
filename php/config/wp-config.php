@@ -101,3 +101,5 @@ require_once(ABSPATH . 'wp-settings.php');
 
 /* install plugin without SFTP/FTP username/password */
 define('FS_METHOD', 'direct');
+define('FS_CHMOD_DIR', 0775);
+define('FS_CHMOD_FILE', 0664);
