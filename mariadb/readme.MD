@@ -6,4 +6,8 @@ docker exec CONTAINER /usr/bin/mysqldump -u root --password=root DATABASE > back
 cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
 
 ## cronjob
-`0 9 * * * /mnt/mariadb/scripts/backup.sh > /dev/null 2>&1`
+```bash
+0 * * * * /srv/mariadb/scripts/hourly.sh > /dev/null 2>&1
+0 9 * * * /srv/mariadb/scripts/daily.sh > /dev/null 2>&1
+0 6 1 * * /srv/mariadb/scripts/monthly.sh > /dev/null 2>&1
+```
