@@ -10,11 +10,3 @@ services:
       TZ: "Asia/Taipei"
     ports:
       - "6379:6379"
-    deploy:
-      resources:
-        limits:
-          cpus: '1.0'
-          memory: 128M
-        reservations:
-          cpus: '0.5'
-          memory: 64M
