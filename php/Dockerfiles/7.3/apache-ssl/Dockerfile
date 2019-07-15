@@ -34,7 +34,8 @@ RUN buildDeps=" \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
     && a2enmod headers \
-    && a2enmod ssl
+    && a2enmod ssl \
+    && a2enmod expires
 
 # Install Composer.
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
