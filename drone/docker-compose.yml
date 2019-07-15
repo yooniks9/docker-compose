@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  drone:
+    container_name: drone
+    image: drone/drone:1
+    restart: always
+    ports:
+      - 3080:80
+      - 3443:443
+    volumes:
+      - /var/lib/drone:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      DRONE_GITHUB_SERVER: https://github.com
+      DRONE_GITHUB_CLIENT_ID: 12345678901234567890
+      DRONE_GITHUB_CLIENT_SECRET: 1234567890123456789012345678901234567890
+      DRONE_RUNNER_CAPACITY: 2
+      DRONE_SERVER_HOST: drone.domain.com
+      DRONE_SERVER_PROTO: https
+      DRONE_TLS_AUTOCERT: "true"
