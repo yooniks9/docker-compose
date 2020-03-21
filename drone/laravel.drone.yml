@@ -9,7 +9,7 @@ platform:
 steps:
 - name: backend
   pull: if-not-exists
-  image: composer:1.9.1
+  image: laradock/workspace:2.6.1-7.2
   commands:
   - cp .env.example .env
   - composer install
