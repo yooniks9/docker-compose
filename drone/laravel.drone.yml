@@ -13,6 +13,7 @@ steps:
   commands:
   - cp .env.example .env
   - composer install
+  - rm .env
 
 - name: frontend
   pull: if-not-exists
@@ -25,7 +26,6 @@ steps:
   - chmod +x artisan
   - chown -R www-data:www-data .
   - rm -rf .git
-  - rm .env
 
 - name: deploy
   image: appleboy/drone-scp
@@ -38,3 +38,9 @@ steps:
       from_secret: SSH_PRIVATE_KEY
     source: ./
     target: /var/www/drone_ci
+
+trigger:
+  branch:
+  - master
+  event:
+  - push
