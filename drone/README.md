@@ -13,3 +13,32 @@ You can use openssl to generate a shared secret:
 $ openssl rand -hex 16
 bea26a2221fd8090ea38720fc445eca6
 ```
+
+### Vars
+
+#### SSH_SERVER 
+
+IP address of the server (Internet IP or Private IP)
+#### SSH_USER - drone-runner
+```
+sudo adduser drone-runner
+sudo su drone-runner
+cd ~
+ssh-keygen -t rsa -b 2048 -C drone-runner
+cd .ssh
+cat id_rsa.pub > authorized_keys
+exit
+sudo usermod -aG www-data drone-runner
+sudo usermod -aG drone-runner www-data
+sudo usermod -aG drone-runner ubuntu
+sudo find /var/www -type f -exec chmod 664 {} + \
+&& sudo find /var/www -type d -exec chmod 775 {} + \
+&& sudo chown -R drone-runner:www-data /var/www
+sudo chmod g+s /var/www
+setfacl -R -m g:www-data:rwx /var/www
+```
+#### SSH_PRIVATE_KEY
+
+```
+sudo cat /home/drone-runner/.ssh/id_rsa
+```
