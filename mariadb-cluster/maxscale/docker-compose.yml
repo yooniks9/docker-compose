@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  
+  maxscale:
+    image: mariadb/maxscale:2.4
+    container_name: maxscale
+    volumes:
+      - ./maxscale.cnf:/etc/maxscale.cnf
+    ports:
+      - "4006:4006"  # readwrite port
+      - "4008:4008"  # readonly port
+      - "8989:8989"  # REST API port
