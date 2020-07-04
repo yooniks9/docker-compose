@@ -1,0 +1,7 @@
+---
+- hosts: webservers
+  gather_facts: False
+  become: True
+  tasks:
+    - name: Set permission
+      shell: chown -R github_runner:www-data /var/www/CHANGEME

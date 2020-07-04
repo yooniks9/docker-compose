@@ -4,6 +4,10 @@
 
 https://github.com/settings/developers
 
+### Create a Oauth bitbucket apps
+
+https://bitbucket.org/USERNAME_CHANGEME/workspace/settings/api
+
 ### Create a Shared Secret
 #### Create a shared secret to authenticate communication between runners and your central Drone server.
 
@@ -36,6 +40,7 @@ sudo find /var/www -type f -exec chmod 664 {} + \
 && sudo chown -R drone-runner:www-data /var/www
 sudo chmod g+s /var/www
 setfacl -R -m g:www-data:rwx /var/www
+echo 'drone-runner ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers.d/drone-runner-init-user
 ```
 #### SSH_PRIVATE_KEY
 

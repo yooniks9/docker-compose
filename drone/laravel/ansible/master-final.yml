@@ -1,0 +1,16 @@
+  
+---
+- hosts: webservers
+  gather_facts: False
+  become: True
+  tasks:
+    - name: Set permission & clear cache
+      shell: |
+        find /var/www/CHANGEME -type f -exec chmod 664 {} +
+        find /var/www/CHANGEME -type d -exec chmod 775 {} +
+        chown -R www-data:www-data /var/www/CHANGEME
+        chmod +x /var/www/CHANGEME/artisan
+        /usr/bin/php /var/www/CHANGEME/artisan cache:clear
+        /usr/bin/php /var/www/CHANGEME/artisan route:clear
+        /usr/bin/php /var/www/CHANGEME/artisan config:clear
+        /usr/bin/php /var/www/CHANGEME/artisan view:clear

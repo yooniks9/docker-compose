@@ -1,0 +1,70 @@
+---
+kind: pipeline
+name: default
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: (master) backend
+  image: laradock/workspace:2.6.1-7.2
+  commands:
+  - cp .env.example .env
+  - composer install
+  when:
+    branch:
+    - master
+
+- name: (master) frontend
+  image: node:10.18.1
+  commands:
+  - npm i
+  - npm run production
+  - rm -rf .git
+  - rm -rf .env
+  - ls -al
+  when:
+    branch:
+    - master
+
+- name: (master) set file permission
+  image: plugins/ansible:1
+  settings:
+    playbook: ansible/master-begin.yml
+    inventory: ansible/inventory
+    user:
+      from_secret: SSH_USER
+    private_key:
+      from_secret: SSH_PRIVATE_KEY
+  when:
+    branch:
+    - master
+
+- name: (master) deploy
+  image: appleboy/drone-scp
+  settings:
+    host:
+      from_secret: SSH_SERVER
+    user:
+      from_secret: SSH_USER
+    key:
+      from_secret: SSH_PRIVATE_KEY
+    source: ./
+    target: /var/www/CHANGEME
+  when:
+    branch:
+    - master
+
+- name: (master) set www-data
+  image: plugins/ansible:1
+  settings:
+    playbook: ansible/master-final.yml
+    inventory: ansible/inventory
+    user:
+      from_secret: SSH_USER
+    private_key:
+      from_secret: SSH_PRIVATE_KEY
+  when:
+    branch:
+    - master

@@ -1,0 +1,5 @@
+[webservers]
+192.168.1.100 #private-ip-address
+
+[webservers:vars]
+ansible_python_interpreter=/usr/bin/python3
