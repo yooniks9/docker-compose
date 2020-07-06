@@ -8,7 +8,7 @@ platform:
 
 steps:
 - name: (master) backend
-  image: laradock/workspace:2.6.1-7.2
+  image: laradock/workspace:latest-7.3
   commands:
   - cp .env.example .env
   - composer install
