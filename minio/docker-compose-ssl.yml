@@ -3,15 +3,16 @@ version: '2'
 services:
  minio:
   image: minio/minio
-  restart: always
+  restart: unless-stopped
   ports:
-   - "9000:9000"
+   - "443:443"
   volumes:
    - ./data:/data
    - ./config:/root/.minio
+   - ./certs:/root/.minio/certs
   environment:
     TZ: "Asia/Taipei"
     MINIO_UPDATE: "off"
     MINIO_ACCESS_KEY: CHANGEME
     MINIO_SECRET_KEY: CHANGEME
-  command: server /data
+  command: server --address ":443" /data
