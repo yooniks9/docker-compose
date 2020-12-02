@@ -5,6 +5,7 @@ services:
   image: minio/minio
   restart: unless-stopped
   ports:
+   - "80:9000"
    - "443:443"
   volumes:
    - ./data:/data
