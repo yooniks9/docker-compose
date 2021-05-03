@@ -1,25 +1,25 @@
-FROM php:7.1-apache
-MAINTAINER yooniks9@gmail.com
+FROM php:7.0-apache
+LABEL maintainer="Roy Tan yooniks9@gmail.com"
 
 # Install PHP extensions and PECL modules.
 RUN buildDeps=" \
-        default-libmysqlclient-dev \
-        libbz2-dev \
-        libmemcached-dev \
-        libsasl2-dev \
+    default-libmysqlclient-dev \
+    libbz2-dev \
+    libmemcached-dev \
+    libsasl2-dev \
     " \
     runtimeDeps=" \
-        curl \
-        git \
-        libfreetype6-dev \
-        libicu-dev \
-        libjpeg-dev \
-        libldap2-dev \
-        libmcrypt-dev \
-        libmemcachedutil2 \
-        libpng-dev \
-        libpq-dev \
-        libxml2-dev \
+    curl \
+    git \
+    libfreetype6-dev \
+    libicu-dev \
+    libjpeg-dev \
+    libldap2-dev \
+    libmcrypt-dev \
+    libmemcachedutil2 \
+    libpng-dev \
+    libpq-dev \
+    libxml2-dev \
     " \
     && apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y $buildDeps $runtimeDeps \
     && docker-php-ext-install bcmath bz2 calendar iconv intl mbstring mcrypt mysqli opcache pdo_mysql pdo_pgsql pgsql soap zip \
@@ -34,6 +34,7 @@ RUN buildDeps=" \
     && rm -r /var/lib/apt/lists/* \
     && a2enmod rewrite \
     && a2enmod headers \
+    && a2enmod ssl \
     && a2enmod expires
 
 # Install Composer.
@@ -42,3 +43,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV PATH $PATH:/root/composer/vendor/bin
 
 EXPOSE 80
+EXPOSE 443
