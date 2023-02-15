@@ -11,4 +11,12 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: w2JWQF4dJq6j4VkU
+      MYSQL_ROOT_PASSWORD: P@ssword
+
+  adminer:
+    image: adminer
+    restart: always
+    volumes:
+      - ./adminer.css:/var/www/html/adminer.css
+    ports:
+      - 8080:8080
