@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.4-apache
 LABEL maintainer="Roy Tan yooniks9@gmail.com"
 
 # Install PHP extensions and PECL modules.
